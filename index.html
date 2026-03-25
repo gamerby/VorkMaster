@@ -487,4 +487,29 @@
         // Премиум
         document.getElementById("buyPremiumBtn").onclick = () => {
             if (user?.premium) { alert("Уже есть"); return; }
-            document.getElementById("cryptoMo
+            document.getElementById("cryptoModal").style.display = "flex";
+        };
+        document.getElementById("copyAddressBtn").onclick = () => {
+            navigator.clipboard.writeText(WALLET);
+            alert("Адрес скопирован!");
+        };
+        document.getElementById("confirmPayBtn").onclick = () => {
+            let txid = prompt("Введи TxID:");
+            if (txid && txid.length > 5) {
+                sendToTG(`💎 ПОКУПКА PREMIUM!\n👤 ${user?.name || "Гость"}\n💰 $7.99 USDT\nTxID: ${txid}`);
+                if (user) activatePremium();
+                document.getElementById("cryptoModal").style.display = "none";
+                alert("Премиум активирован!");
+            } else alert("Введи TxID");
+        };
+        document.getElementById("closeCryptoBtn").onclick = () => {
+            document.getElementById("cryptoModal").style.display = "none";
+        };
+
+        document.getElementById("withdrawBtn").onclick = withdraw;
+    }
+
+    start();
+</script>
+</body>
+</html>
